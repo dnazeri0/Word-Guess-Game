@@ -85,13 +85,11 @@
     ];
     
     // stores letters in strings, useful for later
-    var alpha1 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"] ;
+    var alpha1 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"];
     var alpha2 = ["n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
     // correct answers
     var correct;
-    // chosen word
-    var chosenWord
     // selected word word
     var word;
     // current guess
@@ -111,11 +109,12 @@
     // list 1 from a - m
     function list1() {
         for (var i = 0; i < alpha1.length; i++) {
-            document.getElementById("alpha1Div").innerHTML += "<button type='button' class='btn btn-primary'>" + alpha1[i] + "</button>" + "<br>";
+            document.getElementById("alpha1Div").innerHTML += "<button id='" + alpha1[i] + "'type='button' class='btn btn-primary'>" + alpha1[i] + "</button>" + "<br>";
         }
     }
     list1();
     // list 2 from n - z
+    // correct array reference for id like above in function list1
     function list2() {
         for (var i = 0; i < alpha2.length; i++) {
             document.getElementById("alpha2Div").innerHTML += "<button type='button' class='btn btn-primary'>" + alpha2[i] + "</button>" + "<br>";
@@ -164,8 +163,9 @@
 
 
     // performs a check on click
-    check = function () {
-      list.onclick = function () {
+    check1 = function () {
+      list1.onclick = function () {
+        console.log(this);
         var guess = (this.innerHTML);
         this.setAttribute("class", "active");
         this.onclick = null;
@@ -187,6 +187,48 @@
       }
     }
 
+    document.onkeypress = function (event) {
+        var selectedKey = event.key
+    }
+
+    // check1(); // will point to the window if the function is no attached to any object
+
+    // create a function that executes when a button is clicked
+        // which button? the button with the letter attached as text
+        // attach that function to the button we identified
+        // we can do that using it's id and then we can grab the text out from that element
+
+
+//     document.getElementById("alpha1Div").onclick = function() {check()};
+
+//     function check() {
+//      var guess = document.getElementById("alpha1Div").innerHTML;
+//      console.log(guess);
+
+// }
+
+    check2 = function () {
+      list2.onclick = function () {
+        var guess = (this.innerHTML);
+        this.setAttribute("class", "active");
+        this.onclick = null;
+        // if guess is correct, add 1 to score
+        for (var i = 0; i < word.length; i++) {
+            if (word[i] === guess) {
+                guesses[i].innerHTML = guess;
+                counter += 1;
+            }
+        }
+        // if guess is not correct, deduct 1 key
+        var x = (word.indexOf(guess));
+        if (x === -1) {
+            keys -= 1;
+            outcome();
+        } else {
+            outcome();
+        }
+      }
+    }
 
     // game initializing
     play = function () {
@@ -202,6 +244,15 @@
         comments();
     }
     play();
+
+    // document.onkeyup=function(event){
+    //     var userInput = event.key.toLowerCase();
+    //     if (attemptsLeft === 0){
+    //         console.log("gameover")
+    //         lossesNum++;
+
+    //         document.getElementById("loses").innerHTML = lossesNum;
+    //         return false;  
 
 </script>
 
