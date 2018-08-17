@@ -22,11 +22,19 @@
 
 <div class="container">
   <div class="row">
-      <div id="alphabetDiv"></div>
-  </div>
-<hr>
-  <div class="row">
-    test
+    <div class="col-2">
+        <div id="alpha1Div"></div>
+    </div>
+    <hr>
+    <div class="col-8">
+        <div class="row">
+
+        </div>
+    </div>
+    <hr>
+    <div class="col-2">
+        <div id="alpha2Div"></div>
+    </div>
   </div>
 </div>
 
@@ -69,7 +77,8 @@
     ]
     
     // Stores letters in strings, useful for later
-    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    var alpha1 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"] 
+    var alpha2 = ["n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
    
     // keys used as lives
     var keys
@@ -81,14 +90,24 @@
     var picked
 
     // creates list of letters user picks from
-    
-    function list() {
-        for (var i = 0; i < alphabet.length; i++) {
-            document.getElementById("alphabetDiv").innerHTML += "<button type='button' class='btn btn-primary'>" + alphabet[i] + "</button>";
+    // list 1 from a - m
+    function list1() {
+        for (var i = 0; i < alpha1.length; i++) {
+            document.getElementById("alpha1Div").innerHTML += "<button type='button' class='btn btn-primary'>" + alpha1[i] + "</button>" + "<br>";
         }
     }
+    list1();
+    // list 2 from n - z
+    function list2() {
+        for (var i = 0; i < alpha2.length; i++) {
+            document.getElementById("alpha2Div").innerHTML += "<button type='button' class='btn btn-primary'>" + alpha2[i] + "</button>" + "<br>";
+        }
+    }
+    list2();
 
-    list();
+    
+
+
     // comments = function () {
     //     remainingKeys.innerHTML = keys + " remaining";
     //     if (keys < 1) {
