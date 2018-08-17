@@ -1,0 +1,17 @@
+.jumbotron {
+    padding-bottom: 32px;
+    padding-top: 32px;
+}
+
+h2 {
+    text-align: justify;
+}
+
+button {
+    margin: auto;
+    text-align: center;
+}
+
+#hold {
+    text-align: center;
+}
