@@ -3,6 +3,11 @@
     padding-top: 32px;
 }
 
-.button {
+h2 {
+    text-align: justify;
+}
+
+button {
     margin: auto;
+    text-align: center;
 }

@@ -15,8 +15,10 @@
 
 <div class="jumbotron">
     <h1><strong>CS:GO Word Guess Game</strong></h1>
-    <h2>Try to guess the name of a weapon skin from CS:GO</h2>
-    <h2>Choose wisely, you only have a limit of 6 keys to guess with</h2>
+    <h2>
+        Try to guess the name of a weapon skin from CS:GO<br>
+        Choose wisely, you only have a limit of 6 keys to guess with
+    </h2>
 </div>
 
 
@@ -28,7 +30,7 @@
     <hr>
     <div class="col-8">
         <div class="row">
-
+            <div id="keysDiv"></div>
         </div>
     </div>
     <hr>
@@ -40,7 +42,7 @@
 
 <script type="text/javascript">
 
-    // Stores my word bank
+    // stores my word bank
     var wordbank = [
         {word: "asiimov"},
         {word: "case hardened"},
@@ -76,18 +78,24 @@
         {word: "cobalt disruption"},
     ]
     
-    // Stores letters in strings, useful for later
+    // stores letters in strings, useful for later
     var alpha1 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"] 
     var alpha2 = ["n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
    
     // keys used as lives
-    var keys
-    
+    var keys;
+    // correct answers
+    var correct;
     // randomly picked word
-    var word
-
+    var word;
+    //  guess
+    var guess;
     // user chosen letter
-    var picked
+    var pick;
+    // stored picked
+    var picks = [ ];
+    // space in a word
+    var space;
 
     // creates list of letters user picks from
     // list 1 from a - m
@@ -105,16 +113,42 @@
     }
     list2();
 
-    
+    // display keys(lives) left
+    outcome = function () {
+        remainingKeys.innerHTML = keys + " remaining";
+        if (keys < 1) {
+            remainingKeys.innerHTML = "You lost!";
+        }
+        for (var i = 0; i < picks.length; i++) {
+            if (counter + space === picks.length) {
+                remainingKeys.innerHTML = "You won!";
+            }
+        }
+    }
 
-
-    // comments = function () {
-    //     remainingKeys.innerHTML = keys + " remaining";
-    //     if (keys < 1) {
-    //         remainingKeys.innerHTML = "You lost!";
-    //     }
-    //     for (var i = 0; 
-    // }
+    // performs a check on click
+    check = function () {
+      list.onclick = function () {
+        var guess = (this.innerHTML);
+        this.setAttribute("class", "active");
+        this.onclick = null;
+        // if pick is correct, add 1 to score
+        for (var i = 0; i < word.length; i++) {
+            if (word[i] === guess) {
+                picks[i].innerHTML = pick;
+                counter += 1;
+            }
+        }
+        // if pick is not correct, deduct 1 key
+        var x = (word.indexOf(guess));
+        if (x === -1) {
+            lives -= 1;
+            outcome();
+        } else {
+            outcome();
+        }
+      }
+    }
 
 
 </script>
