@@ -22,7 +22,7 @@
 
 <div class="container">
   <div class="row">
-    test
+      <div id="alphabetDiv"></div>
   </div>
 <hr>
   <div class="row">
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<script>
+<script type="text/javascript">
 
     // Stores my word bank
     var wordbank = [
@@ -67,8 +67,35 @@
         {word: "urban ddpat"},
         {word: "cobalt disruption"},
     ]
+    
+    // Stores letters in strings, useful for later
+    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+   
+    // keys used as lives
+    var keys
+    
+    // randomly picked word
+    var word
 
-    var index = 0
+    // user chosen letter
+    var picked
+
+    // creates list of letters user picks from
+    
+    function list() {
+        for (var i = 0; i < alphabet.length; i++) {
+            document.getElementById("alphabetDiv").innerHTML += "<button type='button' class='btn btn-primary'>" + alphabet[i] + "</button>";
+        }
+    }
+
+    list();
+    // comments = function () {
+    //     remainingKeys.innerHTML = keys + " remaining";
+    //     if (keys < 1) {
+    //         remainingKeys.innerHTML = "You lost!";
+    //     }
+    //     for (var i = 0; 
+    // }
 
 
 </script>
